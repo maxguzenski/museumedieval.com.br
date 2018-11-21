@@ -1,0 +1,19 @@
+<div id="total_order" style="text-align:right;padding-top:8px;">
+  <% if @order.shipping > 0 %>
+  	Valor do frete:
+	<span class="price" style="font-size:140%"><%= currency_for @order.shipping %></span><br/>
+	<div class="total_price">
+		Valor total: <span class="price" style="font-size:180%"><%= currency_for @order.total_price %></span>
+	</div>
+  <% elsif @order.total_weight == 0.0 %>
+    Valor do frete: <span class="price" style="font-size:140%">Grátis</span><br/>
+    <div class="total_price">
+      Valor total: <span class="price" style="font-size:180%"><%= currency_for @order.total_price %></span>
+    </div>
+  <% else %>
+    O valor do frete será calculado na finalização do pedido.
+    <div class="total_price">
+      Valor total: <span class="price" style="font-size:180%"><%= currency_for @order.total_price %></span>
+    </div>
+  <% end %>
+</div>

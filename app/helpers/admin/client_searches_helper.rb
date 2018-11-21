@@ -1,0 +1,2 @@
+module Admin::ClientSearchesHelper
+end

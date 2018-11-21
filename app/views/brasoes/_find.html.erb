@@ -1,0 +1,63 @@
+<div>
+  <style>
+    table { width:350px; padding:0; margin:0 }
+    table td { padding: 2px 2px;  }
+    td.left { font-weight:bold; text-align:right; width:50%; }
+  </style>
+</div>
+<div id="modal_find" class="modal">
+  <% if @family  %>
+    <div class="box">
+      <table>
+        <tr>
+          <td class="left"><%= t :'.surname' %>:</td>
+          <td><%= @family.name %></td>
+        </tr>
+        <tr>
+          <td class="left"><%= t :'.line' %>:</td>
+          <td><%= @family.armorial.line %></td>
+        </tr>
+        <tr>
+          <td class="left"><%= t :'.history' %>:</td>
+          <td><%= yes_no @family.history %></td>
+        </tr>
+        <% if @family.variatons %>
+          <tr>
+            <td class="left"><%= t :'.variations' %>:</td>
+            <td><%= @family.variatons %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <p style="text-align:center">
+      <span style="font-size:110%;color:#4882D6"><%= t :'.found.title' %></span>
+		<%= t :'.found.text', :surname => @family.name, :link => link_to(t(:models), brasoes_url) %>
+    </p>
+
+	<p style="text-align:center;font-size:95%">
+		<%= t :doubt_call %>
+	</p>
+
+  <% elsif params[:surname] %>
+    <div class="box" style="text-align:center;">
+		<%= t :'.not_found.text', :surname => session[:last_surname] %>
+    </div>
+    <p style="text-align:justify">
+      <span style="color: red; font-size:110%"><%= t :'.not_found.atention'%></span> 
+		<%= t :'not_found.p1'%>
+    </p>
+    <p style="font-size: 120%; margin-bottom:5px; text-align:center;">
+		<%= link_to t(:'not_found.email_search'), client_searches_path, :style => "color: #000044; font-weight:bold" %>
+    </p>
+    <p style="font-size: 90%; margin-bottom:20px; text-align:center">
+		<%= t :'not_found.p2'%>
+    </p>
+  <% end %>
+
+  <center>
+    <a href="" onclick="$('#modal_find').dialog('close'); return false;">
+      <img src="<%= t :img %>fechar.gif" alt="fechar"/>
+    </a>
+  </center>
+</div>

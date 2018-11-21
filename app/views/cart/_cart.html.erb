@@ -1,0 +1,37 @@
+<table class="encomenda">
+  <thead>
+    <tr>
+      <th style="width:100px"></th>
+      <th style="">Descrição</th>
+      <th style="width:210px">Opções</th>
+      <th style="width:60px;text-align:center">Valor total</th>
+      <th style="width:10px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for item in @order.order_items %>
+      <tr>
+        <td style="vertical-align:top">
+          <img src="<%= img_url(item.product.main_photo, :t) %> " alt="<%= item.product.name %>" title="<%= item.product.name %>"/>
+        </td>
+        <td>
+          <h5 style="margin-bottom:10px"><%= item.product.name %></h5>
+          <span style="font-size:90%">
+            <%= item.product.description %>
+          </span>
+        </td>
+        <td style="font-size:90%">
+            <%= options_for item %>
+        </td>
+        <td style="text-align:center">
+          <span style="font-size:120%; font-weight:bold"><%= currency_for item.value  %></span>
+        </td>
+        <td> <%= link_to "x", {:action => :destroy, :id => item.id}, :method => :delete %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div id="total" style="margin-right:2em">
+  <%= render :partial => 'total' %>
+</div>

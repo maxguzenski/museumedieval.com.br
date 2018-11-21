@@ -1,0 +1,87 @@
+<div style="float:left;padding:0;margin-right:2em">
+  <p>
+    <b>Número do pedido:</b>
+    <%=h @order.id %>
+    <br/>
+    <b>Nome:</b>
+    <%=h @order.client.name %>
+    <br/>
+    <b>Email:</b>
+    <%=h @order.client.user.email %>
+    <br/>
+    <b>Telefone:</b>
+    <%=h @order.client.phone %>
+	<br/>
+    <b>Token:</b>
+    <%=h @order.client.user.token %>
+  </p>
+</div>
+<div style="float:left;padding:0;margin-right:2em">
+  <p>
+    <b>Rua:</b>
+    <%=@order.client.addresses.first.street %>
+    <br/>
+    <b>Númro:</b>
+    <%=@order.client.addresses.first.number %>
+    <br/>
+    <b>Complemento:</b>
+    <%=@order.client.addresses.first.complement %>
+    <br/>
+    <b>Bairro:</b>
+    <%=@order.client.addresses.first.neighborhood %>
+    <br/>
+    <b>CEP:</b>
+    <%=@order.client.addresses.first.zip_code %>
+    <br/>
+    <b>Cidade:</b>
+    <%=@order.client.addresses.first.city %>
+    <br/>
+    <b>Estado:</b>
+    <%=@order.client.addresses.first.country_state %>
+  </p>
+</div>
+<div style="float:left;padding:0;margin-right:2em">
+  <p>
+    <b>Data do pedido:</b>
+    <%=@order.created_at.to_s(:long) %>
+    <br/>
+  </p>
+</div>
+
+
+<div style="clear:both">
+  <h4>Itens do pedido</h4>
+  <table>
+    <tr>
+      <th></th>
+      <th>Item</th>
+      <th>Tamanho</th>
+      <th>Sobrenome</th>
+      <th>Quantidade</th>
+      <th>Valor</th>
+    </tr>
+    <% @order.order_items.each do |i| %>
+      <tr>
+        <td><img src='<%= img_url i.product.main_photo, :s %>'/></td>
+        <td>
+			<%= i.product.name %><br/>
+			<strong>link:</strong> <%= "opiniao/#{@order.client.user.token}/#{i.product.id}" %>
+		</td>
+        <td><%= format_size i.size %></td>
+        <td><%= i.surname %></td>
+        <td><%= i.item_count %></td>
+        <td><%= currency_for i.value %></td>
+      </tr>
+    <%end%>
+    <tr>
+      <td colspan="5" style="text-align:right"><b>Frete:</b></td>
+      <td><b><%=currency_for @order.shipping %></b></td>
+    </tr>
+    <tr>
+      <td colspan="5" style="text-align:right"><b>Total:</b></td>
+      <td><b><%=currency_for @order.total_price %></b></td>
+    </tr>
+  </table>
+</div>
+
+<%= link_to 'Voltar', admin_orders_path %>

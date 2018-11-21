@@ -1,0 +1,27 @@
+<h1>Comentários no site</h1>
+
+<table class="list">
+  <tr>
+    <th>Author</th>
+    <th>Email</th>
+    <th>Nota</th>
+    <th>Data</th>
+	<th>Aprovado</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @comments.each do |c| %>
+  <tr>
+    <td><%= h c.name %></td>
+    <td><%= h c.email %></td>
+    <td><%= h c.rate %></td>
+    <td><%= h c.created_at.to_s_br %></td>
+    <td><%= h c.approved? %></td>
+	<td><%= link_to 'Ver', admin_comment_path(c) %></td>
+    <td><%= link_to 'Edit', edit_admin_comment_path(c) %></td>
+    <td><%= link_to 'Remover', admin_comment_path(c), :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

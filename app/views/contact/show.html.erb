@@ -1,0 +1,51 @@
+<% content_for :title do %>
+  | <%= t :'.title' %>
+<% end %>
+
+<br/>
+<br/>
+
+<div id="inner-context">
+  <div style="margin-right:30px">
+    <img src="<%= t :img %>contato.gif" alt="Contato" title="Contato" />
+    <div style="margin:2em 0 2em 0">
+      <div style="float:left; width:400px;height:330px">
+        <iframe width="370" height="280" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com.br/maps/ms?ie=UTF8&amp;hl=pt-BR&amp;msa=0&amp;msid=103762524977341931167.00046e50b39fc47415d3b&amp;ll=-29.367515,-50.866699&amp;spn=0.041888,0.063515&amp;z=13&amp;output=embed"></iframe><br /><small>Visualizar em <a href="http://maps.google.com.br/maps/ms?ie=UTF8&amp;hl=pt-BR&amp;msa=0&amp;msid=103762524977341931167.00046e50b39fc47415d3b&amp;ll=-29.367515,-50.866699&amp;spn=0.041888,0.063515&amp;z=13&amp;source=embed" style="color:#0000FF;text-align:left" target="_blank">um mapa maior</a></small>
+      </div>
+      <div style="">
+        <h3 style="margin-bottom:5px;">Museu Medieval - Castelo Saint George </h3>
+        <p>
+          <%= t :'.p1' %>
+        </p>
+        <p style="margin-bottom:10px;">
+          <%= t :'.p2' %>
+        </p>
+        <p style="margin-bottom:10px;">
+          <%= t :'.p3' %>
+        </p>
+        <p>
+          <strong>Contato (pesquisas de sobrenome apenas por telefone)</strong></br>
+          - <a href="mailto:contato@museumedieval.com.br">contato@museumedieval.com.br</a><br/>
+          - (54) 3286.3697
+        </p>
+      </div>
+    </div>
+<!--
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+    <a name="form" style="text-decoration:none">&nbsp;</a>
+    <div class="form-box">
+      <h4 style="margin-bottom:5px; font-weight:bold; border-bottom:1px dotted #000000"><%= t :'.form.title' %></h4>
+      <span style="font-size:95%"><%= t :'.form.text' %></span><br/><br/>
+      <span style="color: red; font-size:110%"><%= t :atention %>: </span>
+		<%= t :'.form.atention_text', :link => link_to(t(:click_here), client_searches_path) %>
+      <div id="contact_form" style="margin-top: 10px">
+        <%= render :partial => 'contact_form' %>
+      </div>
+    </div>
+-->
+  </div>
+</div>

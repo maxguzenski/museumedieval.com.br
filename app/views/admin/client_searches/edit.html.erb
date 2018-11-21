@@ -1,0 +1,65 @@
+<h3>Pesquisa acervo - show</h3>
+
+<div>
+  <p>
+    <b>Data:</b>
+    <%=h @search.created_at.to_s_br %>
+	<br/>
+    <b>Cliente:</b>
+    <%=h @search.name %>
+    <br/>
+    <b>Email:</b>
+    <%=h @search.email %>
+    <br/>
+	<b>Valor:</b>
+    <%= currency_for @search.price %>
+    <br/><br/>
+
+    <b>Sobrenome 1:</b>
+    <%=h @search.surname_1 %>
+	<br/>
+    <b>Variações 1:</b>
+    <%=h @search.variatons_1 %>
+	<br/>
+    <b>Região 1:</b>
+    <%=h @search.region_1 %>
+	<br/>
+    <b>Informações 1:</b>
+    <%=h @search.description_1 %>
+	<br/><br/>
+
+    <b>Sobrenome 2:</b>
+    <%=h @search.surname_2 %>
+	<br/>
+    <b>Variações 2:</b>
+    <%=h @search.variatons_2 %>
+	<br/>
+    <b>Região 2:</b>
+    <%=h @search.region_2 %>
+	<br/>
+    <b>Informações 2:</b>
+    <%=h @search.description_2 %>
+	<br/><br/>
+
+    <b>Sobrenome 3:</b>
+    <%=h @search.surname_3 %>
+	<br/>
+    <b>Variações 3:</b>
+    <%=h @search.variatons_3 %>
+	<br/>
+    <b>Região 3:</b>
+    <%=h @search.region_3 %>
+	<br/>
+    <b>Informações 3:</b>
+    <%=h @search.description_3 %>
+	<br/><br/>
+  </p>
+
+<% form_for @search, :url => { :action => :update }, :method => :put do |f| %>
+    Status: <%= f.select :status, [['completed', 'completed'], ["approved", "approved"], ['pending', 'pending'], ["canceled", "canceled"]], {}, {:class => 'text'} %>
+	<%= submit_tag "Alterar" %>
+<% end %>
+
+</div>
+
+<%= link_to 'Voltar', admin_client_searches_path %>

@@ -1,0 +1,159 @@
+<% content_for :title do %>
+  | <%=  t :'brasoes.title' %> | <%= @model.localized_name %>
+<% end %>
+<% content_for :description do %>
+  <%= "#{h @model.localized_name}: #{h @model.localized_description}" %>. 
+<% end %>
+
+<% content_for :context_height do %>
+  1170px
+<% end %>
+
+<% content_for :javascript do %>
+	$(function() {
+		$('.size_radio:first').attr('checked','checked');
+		$('#price_box_'+$('.size_radio:checked').val()).show();
+
+		$('.size_radio').click(function() {
+		  $('.price_box').hide();
+		  $('#price_box_'+$('.size_radio:checked').val()).show("highlight");
+		});
+
+		$('a.thumb_link').click(function() {
+		  return changeImage($('#main_photo'), $(this).find('img'));
+		});
+
+		$('#encomenda_form').submit(function() {
+		  if ($('#surname').val() == "") {
+		    alert("<%=t(:'.buy.error')%>");
+		    $('#surname').focus();
+		    return false;
+		  }
+		  return true;
+		});
+	});
+<% end %>
+
+<div id="inner-context">
+  <div style="margin-right:30px">
+    <div>
+    <% link_to brasoes_path, :style => 'text-decoration:none;' do %>
+      <img src="<%=t(:img)%>brasoes.gif" alt="Brasoes de Familia" title="Brasões de Família" style="vertical-align:middle;float:left; margin-right:0.5em"/>
+    <% end %>
+      <div style="padding-top:8px;font-weight:bold;"> &gt;&gt; <%= @model.localized_name  %> </div>
+    </div>
+      
+    <div style="text-align: center; margin: 3em 0; padding:0 50px">
+      <table style="width:640px">
+        <tr>
+          <td style="width:100%;text-align:center;padding:0">
+            <div id="main_photo" style="text-align:center; ">
+              <img src="<%= img_url(@model.main_photo) %>" alt="<%= @model.localized_name %>" title="<%= @model.localized_name %>">
+            </div>
+						<div style="margin-top: 5px; font-size:13px">
+							<%= t :'.info' %>
+						</div>
+          </td>
+          <% if @model.photos.size > 1 %>
+            <td style="vertical-align:top">
+              <% for photo in @model.photos  %>
+                <a href="#" class="thumb_link" style="text-decoration:none;">
+                  <img src="<%= img_url(photo, :s)  %>" class="thumb" rel="<%= img_url(photo)  %>" alt="" style="margin-bottom:5px"/><br/>
+                </a>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+
+    <div style="margin:0 30px;">
+      <% form_for @orderItem, :url => cart_path, :html => {:id => 'encomenda_form'} do |f| %>
+        <input type="hidden" name="url_path" value="<%= brasoes_path %>" />
+        <%= f.hidden_field :product_id %>
+        <div class="produto_desc">
+          <h3><%= @model.localized_name %></h3>
+          <p>
+            <%= @model.localized_description %>
+          </p>
+          <p>
+            <strong><%= t :'product_info.delivery' %>:</strong> <%= delivery_for @model %>
+          </p>
+
+          <table>
+            <tr>
+              <td style="padding-right:5px;vertical-align:top"><strong><%= t :'product_info.dimensions' %>:</strong></td>
+              <td id="dimensoes" style="vertical-align:top">
+	            <%= t :'product_info.on_request' if @model.sizes.empty? %>
+                <% for size in @model.sizes %>
+                  <%= f.radio_button :size_id, size.id, :class => 'radio size_radio' %>
+                  <%= f.label "size_id_#{size.id}", format_size(size) %><br/>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <div class="small" style="padding-top:1em" >
+                  <span style="font-weight:bold"><%= t :'product_info.custom_size.title' %>:</span>
+				  <%= t :'product_info.custom_size.text', :link => link_to(t(:by_email), contact_path(:anchor => 'form')) %>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="margin-left:400px; text-align:center">
+          <div style="margin-bottom:3em; padding: 10px;background-color:#F6F6F6">
+		  	<% if I18n.locale == :'pt-BR' && !@model.sizes.empty?  %>  
+	            <div style="text-align:left; margin-bottom:5px;">
+	              <%= f.label :surname, "#{t(:'.buy.surname')}:", :style=>'font-weight:bold' %>
+	              <%= f.text_field :surname, :id => 'surname', :style => 'margin:0;padding:2px 2px; width:200px' %><br/>
+	              <!--span style="font-size:90%; color:#6F6F6F;">Em caso de junção separe-os com vírgula.</span-->
+	            </div>
+	            <p style="font-size:90%; text-align:left; padding-bottom:10px; margin-bottom: 10px; border-bottom:1px dotted #000000">              
+	              <% if false #@model.junction %>
+	                <%= f.check_box :history, :class => 'check', :onclick => remote_function(:url => { :action => :update_price}, :with => "$('#encomenda_form').serialize()") %>
+	                <%= f.label :history, "Adicionar simbologia e histórico" %> (<a href="" onclick="return openModal('history_modal', 600)">o que é isso?</a>)
+	                <br/><%= f.check_box :junction, :class => 'check' %><%= f.label :junction, "Junção de sobrenomes" %> (<a href="" onclick="return openModal('junction_modal', 600)">o que é isso?</a>)>
+	              <% end %>
+	            </p>
+	            <% for size in @model.sizes %>
+	              <div id="price_box_<%=size.id%>" class="price_box" style="display:none">
+	                <span id="price" class="price" style="font-size:160%"><%= currency_for size.value  %></span> 
+					<%= size.weight == 0 ? t(:'buy.free_price_desc') : t(:'buy.price_desc') %>
+	                <br/> <%= t(:'buy.credit_card') %>
+	              </div>
+	            <% end %>
+
+	            <p style="margin-top:1.5em; margin-bottom:0; text-align:center; font-size:130%">
+	              <%= submit_tag t(:'buy.submit'), :name => "encomenda"%>
+	            </p>
+  		    <% else %>
+	            <% for size in @model.sizes %>
+	              <div id="price_box_<%=size.id%>" class="price_box" style="display:none; margin-bottom:1em">
+	                <span id="price" class="price" style="font-size:160%"><%= currency_for size.localized_value  %></span> <%= t(:'buy.price_desc') %>
+	              </div>
+	            <% end %>
+				<span style="font-size: 120%">
+					<%= t :'buy.not_online', :link => link_to(t(:by_email), contact_path(:anchor => 'form')) %>
+				</span>
+		    <% end %>
+	      </div>
+        <% end %>
+      </div>
+
+	  <%= render :partial => "product_comments/comments", :locals => {:product_comments => @model.product_comments, :product_id => @model.id, :path => brasao_path(@model)}  %>
+
+      <div style="margin-top:3em; text-align:center; clear:both">
+        <% link_to brasoes_path do %>
+          <img src="<%=t(:img)%>voltar.gif" alt="voltar"/>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%= render :partial => 'history_simbology'  %>
+<%= render :partial => 'junction'  %>

@@ -1,0 +1,10 @@
+<h1>Cadastrar novo modelo</h1>
+
+<% form_for(:admin, @model) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <p>
+    <%= f.submit 'cadastrar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Voltar', admin_models_path %>

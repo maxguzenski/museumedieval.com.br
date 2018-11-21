@@ -1,0 +1,2 @@
+class MuseumComment < Comment
+end

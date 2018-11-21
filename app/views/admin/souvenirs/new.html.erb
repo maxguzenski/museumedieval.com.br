@@ -1,0 +1,12 @@
+<h1>Cadastrar novo souvenir</h1>
+
+<%= flash[:notice] %>
+
+<% form_for [:admin, @souvenir] do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <p>
+    <%= f.submit 'cadastrar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Voltar', admin_souvenirs_path %>

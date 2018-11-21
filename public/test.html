@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Ruby on Rails: Welcome aboard</title>
+	
+	<link href="stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+	
+    <style type="text/css" media="screen">
+	body {
+		background:transparent url(images/fundo.jpg) repeat scroll 0 0;
+	}
+	
+	#faixa {
+		background:transparent url(images/faixa.gif) repeat-x scroll 0 72px;
+		min-height:500px;
+	}
+	
+	#header {
+		background:transparent url(images/titulo950.jpg) no-repeat scroll 0 0;
+		margin:0 auto;
+		min-height:132px;
+		width:950px;
+		position:relative;
+		z-index:1;
+	}
+	
+	#header .logo {
+		float: left;
+		width: 485px;
+		text-decoration: none;
+	}
+
+	#header .logo a {
+		display:block;
+		height:80px;
+		margin:20px 40px 80px;
+		text-decoration:none;
+	}
+	
+	
+	#faixa_inner {
+		background:transparent url(images/castelo.jpg) no-repeat scroll 55px 0;
+		height:265px;
+		margin:-10px auto;
+		position:relative;
+		width:950px;
+		z-index:1000;
+	}
+	
+	.faixa_castelo {
+		background:transparent url(images/faixa_museu.gif) no-repeat scroll 560px 50px;
+		height:300px;
+	}
+	
+	.menu {
+		background:transparent url(images/menu_fundo.jpg) no-repeat scroll 0 0;
+		height:137px;
+		width:67px;		
+		float: left;		
+		text-align:center;
+		
+	}
+	
+	.menu a, .menu:HOVER a {
+		text-decoration: none;
+		color: #564e42;
+		font-weigth: bold;
+		font-size:110%;
+		font-weight:bold;
+		display: block;
+		padding-top: 85px;
+	}
+	
+	.selected a, .menu:HOVER a {
+		color: #ffffff;
+	}	
+
+	.selected {
+		background:transparent url(images/flag.gif) no-repeat scroll 0 0;
+	}
+	
+	.castelo div {
+		background:transparent url(images/menu_castelo.gif) no-repeat scroll 0px 15px;
+	}
+	
+	.castelo:HOVER div {
+		background-position: -67px 15px;
+	}
+	
+	.castelo_selected div {
+		background:transparent url(images/menu_castelo.gif) no-repeat scroll -134px 15px;
+	}
+	
+	.castelo a {
+		display: block;
+	}
+	
+	.brasoes div {
+		background:transparent url(images/menu_brasoes.gif) no-repeat scroll 0px 15px;
+	}
+	
+	.brasoes:HOVER div {
+		background-position: -67px 15px;
+	}
+	
+	.brasoes_selected div {
+		background:transparent url(images/menu_brasoes.gif) no-repeat scroll -134px 15px;
+	}
+	
+
+	.facas div {
+		background:transparent url(images/menu_facas.gif) no-repeat scroll 0px 15px;
+	}
+	
+	.facas:HOVER div {
+		background-position: -67px 15px;
+	}
+	
+	.facas_selected div {
+		background:transparent url(images/menu_facas.gif) no-repeat scroll -134px 15px;
+	}
+	
+	.facas a {
+		display: block;
+	}	
+	
+	
+	.espadas div {
+		background:transparent url(images/menu_espadas.gif) no-repeat scroll 0px 15px;
+	}
+	
+	.espadas:HOVER div {
+		background-position: -67px 15px;
+	}
+	
+	.espadas_selected div {
+		background:transparent url(images/menu_espadas.gif) no-repeat scroll -134px 15px;
+	}
+
+	.espada a {
+		display: block;
+	}	
+
+	.pena div {
+		background:transparent url(images/menu_pena.gif) no-repeat scroll 0px 15px;
+	}
+	
+	.pena:HOVER div {
+		background-position: -67px 15px;
+	}
+	
+	.pena_selected div {
+		background:transparent url(images/menu_pena.gif) no-repeat scroll -134px 15px;
+	}
+	
+	.pena a {
+		display: block;
+	}	
+	
+
+	.mapa div {
+		background:transparent url(images/menu_mapa.gif) no-repeat scroll 0px 15px;
+	}
+	
+	.mapa:HOVER div {
+		background-position: -67px 15px;
+	}
+	
+	.mapa_selected div {
+		background:transparent url(images/menu_mapa.gif) no-repeat scroll -134px 15px;
+	}
+	
+	.mapa a {
+		display: block;
+	}
+	
+	
+	.redflag {
+		background:transparent url(images/flag.gif) no-repeat scroll 0 0;
+	}
+	
+	.redflag span {
+		color:#FFFFFF;
+	}
+	
+	.topofim {
+		background:transparent url(images/topo-final950.jpg) no-repeat scroll 0 0;
+		float:left;
+		height: 124px;
+		width:60px;
+	}
+	
+	.pergaminho {
+		background:transparent url(images/perg.png) no-repeat scroll 0 0;
+		height: 200px;
+	}
+    </style>
+  </head>
+  
+  <body>
+	<div id="faixa">	
+		<div class="container">
+			<div id="header">
+				<div class="logo"><a href="">&nbsp;</a></div>
+				<div class="menu castelo">
+					<div><a href="">Museu</a></div>
+				</div>						
+				<div class="menu selected brasoes_selected">
+					<div><a href="">Brasões</a></div>
+				</div>	
+				<div class="menu facas">
+					<div><a href="">Cutelaria</a></div>
+				</div>
+				<div class="menu espadas">
+					<div><a href="">Serviços</a></div>
+				</div>	
+				<div class="menu pena">
+					<div><a href="">Blog</a></div>
+				</div>			
+				<div class="menu mapa">
+					<div><a href="">Contato</a></div>
+				</div>
+				<div class="topofim">
+					<div>.</div>
+				</div>				
+			</div>
+			
+			<div id="faixa_inner">
+				<div class="prepend-10 faixa_castelo">oi</div>
+			</div>
+			
+			<div id="perg" class="pergaminho">oi</div>
+		</div>
+	<div>
+	
+  </body>
+  
+  
+</html>

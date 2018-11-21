@@ -1,0 +1,8 @@
+Nome: <%= @comment.name  %>
+E-Mail: <%= @comment.email  %>
+<% if @comment.class == ProductComment %>
+Produto: <%= @comment.product.name  %>
+<% end %>
+Nota: <%= @comment.rate  %>
+
+<%= @comment.message %>

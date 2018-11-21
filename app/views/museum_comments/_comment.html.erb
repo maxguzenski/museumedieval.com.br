@@ -1,0 +1,7 @@
+<blockquote>
+	"<%= comment.localized_resume_or_message %>"
+</blockquote>
+<div class="star star-<%= comment.rate %>">&nbsp;</div>
+<div style="text-align:right;margin-bottom:2em">
+	&mdash; <%= comment.name %> <%= "(#{comment.place})" if comment.place && !comment.place.empty? %>, sobre visita ao museu.
+</div>

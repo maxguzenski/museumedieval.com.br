@@ -1,0 +1,84 @@
+<h3>Pesquisas no acervo</h3>
+
+<table class="list">
+  <tr>
+    <th>Data</th>
+    <th>Cliente</th>    
+    <th>Sobrenome 1</th>
+    <th>Sobrenome 2</th>
+    <th>Sobrenome 3</th>
+    <th>Status</th>
+    <th> </th>
+  </tr>
+
+<% @approved.each do |s| %>
+  <tr>
+	<td><%= s.created_at.to_date.to_s_br %></td>
+    <td><%= h s.name %></td>
+    <td><%= h s.surname_1 %></td>
+    <td><%= h s.surname_2 %></td>
+    <td><%= h s.surname_3 %></td>
+    <td><%= h s.status %></td>
+    <td>
+		<%= link_to 'Editar', edit_admin_client_search_path(s) %> |
+		<%= link_to 'Remover', admin_client_search_path(s), :method => :delete , :confirm => "Tem certeza que você deseja remover esta pesquisa?" %>
+	</td>
+  </tr>
+<% end %>
+</table>
+
+<hr/>
+
+<table class="list">
+  <tr>
+    <th>Data</th>
+    <th>Cliente</th>    
+    <th>Sobrenome 1</th>
+    <th>Sobrenome 2</th>
+    <th>Sobrenome 3</th>
+    <th>Status</th>
+    <th> </th>
+  </tr>
+<% @pendings.each do |s| %>
+  <tr>
+	<td><%= s.created_at.to_date.to_s_br %></td>
+    <td><%= h s.name %></td>
+    <td><%= h s.surname_1 %></td>
+    <td><%= h s.surname_2 %></td>
+    <td><%= h s.surname_3 %></td>
+    <td><%= h s.status %></td>
+    <td>
+		<%= link_to 'Editar', edit_admin_client_search_path(s) %> |
+		<%= link_to 'Remover', admin_client_search_path(s), :method => :delete , :confirm => "Tem certeza que você deseja remover esta pesquisa?" %>
+	</td>
+  </tr>
+<% end %>
+</table>
+
+<hr/>
+
+<table class="list">
+  <tr>
+    <th>Data</th>
+    <th>Cliente</th>    
+    <th>Sobrenome 1</th>
+    <th>Sobrenome 2</th>
+    <th>Sobrenome 3</th>
+    <th>Status</th>
+    <th> </th>
+  </tr>
+<% @others.each do |s| %>
+  <tr>
+	<td><%= s.created_at.to_date.to_s_br %></td>
+    <td><%= h s.name %></td>
+    <td><%= h s.surname_1 %></td>
+    <td><%= h s.surname_2 %></td>
+    <td><%= h s.surname_3 %></td>
+    <td><%= h s.status %></td>
+    <td>
+		<%= link_to 'Editar', edit_admin_client_search_path(s) %> |
+		<%= link_to 'Remover', admin_client_search_path(s), :method => :delete , :confirm => "Tem certeza que você deseja remover esta pesquisa?" %>
+	</td>
+  </tr>
+<% end %>
+</table>

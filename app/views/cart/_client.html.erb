@@ -1,0 +1,48 @@
+<p style="font-size: 110%; padding:8px 0 30px 0; margin-bottom:1em;">
+  Antes de finalizar seu pedido, tenha certeza de que seus dados e endereço de entrega foram informados corretamente.
+</p>
+<style>.my-data label {width: 130px; }</style>
+<style>.my-address label {width: 100px; }</style>
+
+<div>
+  <div style="float:left; width:320px" class="order-data my-data">
+    <h3>Meus dados</h3>
+    <p>
+      <label>Nome Completo:</label> <%= client.name %>
+    </p>
+    <p>
+      <label>Telefone residencial:</label> (<%= client.phone_ddd %>) <%= client.phone_number %>
+    </p>
+    <p>
+      <label>E-mail:</label> <%= client.user.email %>
+    </p>
+  </div>
+
+  <div style="float:left; width:285px; border-left:1px dashed #9F9F9F; margin-left:10px; padding-left:10px" class="order-data my-address">
+    <style>label_130 {width: 130px;}</style>
+    <h3>Meu endereço de entrega</h3>
+      <p>
+        <label>Logradouro:</label><%= client.addresses.first.street %>
+      </p>
+      <p>
+        <label>Número:</label><%= client.addresses.first.number %>
+      </p>
+      <% if client.addresses.first.complement %>
+        <p>
+          <label>Complemento:</label><%= client.addresses.first.complement %>
+        </p>
+      <% end %>
+      <p>
+        <label>Bairro:</label><%= client.addresses.first.neighborhood %>
+      </p>
+      <p>
+        <label>Estado:</label><%= client.addresses.first.country_state %>
+      </p>
+      <p>
+        <label>CEP:</label><%= client.addresses.first.zip_code %>
+      </p>
+  </div>
+</div>
+<div style="float:left;margin-left:10px;padding-top:70px;" class="order-data">
+  <%= link_to 'alterar dados', edit_client_path(client) %>
+</div>

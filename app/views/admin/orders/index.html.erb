@@ -1,0 +1,30 @@
+<h1>Pedidos</h1>
+
+<table class="list">
+  <tr>
+    <th>Número</th>    
+    <th>Valor</th>
+    <th>Cliente</th>
+    <th>E-mail</th>
+    <th>Telefone</th>
+    <th>Cidade</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+
+<% @orders.each do |o| %>
+  <tr>
+    <td><%= h o.id %></td>
+    <td><%= h o.total_price %></td>
+    <td><%= h o.client.name %></td>
+    <td><%= h o.client.user.email %></td>
+    <td><%= h o.client.phone %></td>
+    <td><%= h o.client.addresses.first.city %></td>
+    <td><% if o.status.nil? %>Não concluida<% else %><%= o.status %><% end %></td>
+    <td>
+		<%= link_to 'Ver', admin_order_path(o) %> |
+		<%= link_to 'Remover', admin_order_path(o), :method => :delete, :confirm => "Tem certeza que você deseja remover este pedido?" %>
+	</td>
+  </tr>
+<% end %>
+</table>

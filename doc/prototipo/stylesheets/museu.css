@@ -1,0 +1,22 @@
+#header {
+  text-align: center;
+  background-color: lightgray;
+}
+
+.mmBox {
+  background-color: lightgray;
+
+}
+
+.mmBox div {
+  padding: 10px;
+}
+
+.center {
+  text-align: center;  
+}
+
+.right {
+  text-align: right;
+  
+}

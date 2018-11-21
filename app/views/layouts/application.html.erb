@@ -1,0 +1,190 @@
+<html>
+  <head>
+    <title><%= t :'header.title' %> <%= yield :title  %> </title>
+    <META NAME="DESCRIPTION" CONTENT="<%= yield(:description) %> <%= t :'header.description' %>">
+    <META NAME="AUTHOR" CONTENT="Maxmiliano Guzenski"/>
+    <META NAME="KEYWORDS" CONTENT="<%= t :'header.keywords' %>">
+    <meta name="google-site-verification" content="<%= t :'header.google_verify' %>" />
+	<meta http-equiv="content-language" content="<%= t :'header.language' %>">
+
+    <%= stylesheet_link_tag "screen", "jquery-ui", "museu", "jquery.lightbox", "ui.stars.min", :cache => "all" %>
+    <!--[if IE]>
+      <%= stylesheet_link_tag "ie", "museu_ie", :cache => "all_ie" %>
+    <![endif]-->
+  </head>
+  <body>   
+    <div id="background">
+      <div id="container">		
+		<!-- model waiting -->
+		<div id="waiting"><div><%= t :waiting %></div></div>
+
+        <!-- modal de login -->
+        <div id="login-modal" class="modal"> </div>
+		<div id="comment-modal" class="modal"> </div><!-- div para injetar a modal de comentarios por ajax -->
+		<div id="product-comment-modal" class="modal"> </div>
+
+        <!-- menus do cliente (pedido, carrinho, etc) -->
+        <div id="client-links">	
+			<div class="addthis_default_style" style="padding:5px 0px 0px 10px; _padding-right:5px; margin-left:10px">
+				<a href="http://addthis.com/bookmark.php?v=250" class="addthis_button_compact"></a>
+				<span class="addthis_separator"> </span>
+				<a class="addthis_button_orkut"> </a>
+				<a class="addthis_button_facebook"> </a>
+				<a class="addthis_button_twitter"> </a>    
+				<a class="addthis_button_email"> </a>
+			</div>	
+          <% if session[:order_id] %>
+            <div style="padding:5px 10px 0 10px;">
+              <% if false %>
+                <span style="margin-right:5px;"><%= link_to "&raquo; Meus Pedidos", client_url %></span>
+              <% end %>
+              <span><%= link_to "&raquo; Meu Carrinho", cart_url %></span>
+            </div>
+          <% end %>
+          <% if session[:user_id] %>
+            <div style="padding:5px 10px 0 5px;">
+              <span style="margin-right:5px;">
+                <%= User.find(session[:user_id]).email %>
+                (<%= link_to 'logout', login_path, :method => :delete %>)
+              </span>
+            </div>
+          <% end %>
+        </div>
+
+	    <div id="i18n_flag">
+	  		<a href='<%= "#{APP_DOMAIN_CONFIG[:'pt-BR']}#{request.env['REQUEST_URI']}" %>'>
+				<img src="/images/brazil.png"  title="Português" alt="Portugues" />
+			</a>
+	  		<a href='<%= "#{APP_DOMAIN_CONFIG[:en]}#{request.env['REQUEST_URI']}" %>' style="margin-left:1em">
+				<img src="/images/eng.png" title="English" alt="English"/>
+			</a>
+	    </div>
+
+        <!-- HEAD e MENU -->
+        <div id="header">
+          <div class="logo">
+			<a href="/">&nbsp;</a>
+		  </div>
+          <div class="menu">
+            <%= create_menu(:'menu.museum', ['home'], 'castelo') %>
+            <%= create_menu(:'menu.coat_of_arms', ['brasoes', 'client_searches'], 'brasoes') %>
+            <%= create_menu(:'menu.cutlery', ['cutlers'], 'cutelaria') %>
+            <%= create_menu(:'menu.souvenirs', ['souvenirs'], 'souvenirs') %>
+            <%= create_menu(:'menu.blog', ['blog'], 'blog', 'https://www.facebook.com/museu.medieval') %>
+            <%= create_menu(:'menu.contact', ['contact'], 'contato') %>
+          </div>
+          <div class="header_end">&nbsp;</div>
+        </div>
+
+        <div class="faixa <%= faixa_class %>">			
+          <div class="inner-faixa">
+            <%= faixa_img  %>
+            <% if controller.controller_name == 'home' %>
+              <%= render :partial => 'museum_comments/link' %>
+            <% end %>
+            <% if ApplicationHelper::BRASOES_VIEW.include? controller.controller_name %>
+              <%= render :partial => 'brasoes/surname_find' %>
+            <% end %>            
+          </div>
+        </div>
+
+        <div class="pergaminho-topo-p1">          
+          &nbsp;
+        </div>
+        <div class="pergaminho">         
+          <div class="pergaminho-topo-p2">&nbsp;</div>
+          <div id="context" style="height:<%= yield(:context_height) || '900px' %>;">
+            <% if Date.today < Date.new(2014,03,28) %>
+              <div style='text-align: center; background: #a00; color: #fff; line-height: 2em; margin: 0px 50px;'>ATENÇÃO: Estaremos fechados de 09/03/2014 até 28/03/2014</div> 
+            <% end %>
+            <%= yield %>
+          </div>
+          <div class="pergaminho-base">&nbsp;</div>
+        </div>
+
+        <div id="footer">
+			<div>
+				<h3 style="margin-bottom:5px"><%= t :'donations.title' %></h3>
+				<table style="width:890px">
+					<tr>
+						<td style="text-align: justify">
+							<%= t :'donations.text' %>
+						</td>
+						<% if I18n.locale == :'pt-BR' %>
+							<td style="width:120px; text-align:center">
+								<!-- PAYPAL -->
+								<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+								<input type="hidden" name="cmd" value="_donations">
+								<input type="hidden" name="business" value="2A3KS8PZNDRVS">
+								<input type="hidden" name="lc" value="BR">
+								<input type="hidden" name="item_name" value="Museu Medieval - Castelo Saint George">
+								<input type="hidden" name="item_number" value="museu_doacao">
+								<input type="hidden" name="currency_code" value="BRL">
+								<input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted">
+								<input type="image" src="https://www.paypal.com/pt_BR/BR/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - A maneira mais fácil e segura de efetuar pagamentos on-line!">
+								<img alt="" border="0" src="https://www.paypal.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
+								</form>
+								<!-- FINAL PAYPAL -->
+							</td>
+							<td style="width:120px; text-align:center">	
+								<!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+								<form target="pagseguro" action="https://pagseguro.uol.com.br/checkout/doacao.jhtml" method="post">
+								<input type="hidden" name="email_cobranca" value="max@guzenski.com.br" />
+								<input type="hidden" name="moeda" value="BRL" />
+								<input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/doacoes/95x45-doar.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+								</form>
+								<!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+							</td>
+						<% else %>
+							<td style="width:150px; text-align:center">
+								<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+								<input type="hidden" name="cmd" value="_donations">
+								<input type="hidden" name="business" value="2A3KS8PZNDRVS">
+								<input type="hidden" name="lc" value="BR">
+								<input type="hidden" name="item_name" value="Museu Medieval - Castelo Saint George">
+								<input type="hidden" name="item_number" value="museu_doacao_en">
+								<input type="hidden" name="currency_code" value="USD">
+								<input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHosted">
+								<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+								<img alt="" border="0" src="https://www.paypal.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
+								</form>
+							</td>
+						<% end %>
+					</tr>
+				</table>
+			</div>	
+			<hr style="border:none; height:1px; background-color: #7F7F7F;margin-top:1em"/>		
+			<center><%= t :'footer.text' %></center>
+			<p style="text-align:center; margin:10px 0px; font-size:130%">
+		  		<%= t :'footer.orkut' %>
+			</p>
+        </div>
+      </div>
+    </div>
+
+    <%= render :partial => 'brasoes/find' %>    
+
+    <%= javascript_include_tag "jquery", "jquery-ui", "jrails", "application", "plugins/jquery.flickr", "plugins/jquery.lightbox.min", "plugins/ui.stars.min", :cache => "all" %>
+
+	<script type="text/javascript">
+		<%= yield :javascript %>
+		var addthis_config = {ui_language: "<%= t :addthis_lang %>"};
+	</script>
+	
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=maxguzenski"></script>
+    
+	<% if ENV['RAILS_ENV'] == 'production' %>
+		<script type="text/javascript">
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', '<%= t :google_code %>']);
+			  _gaq.push(['_trackPageview']);
+
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			  })();
+		</script>
+    <% end %>
+  </body>
+</html>

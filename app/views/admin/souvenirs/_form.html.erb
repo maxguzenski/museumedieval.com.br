@@ -1,0 +1,58 @@
+<%= f.error_messages %>
+
+<p>
+  <%= f.label :name, "Nome" %><br />
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :name_en, "Nome Inglês" %><br />
+  <%= f.text_field :name_en %>
+</p>
+
+<p>
+  <%= f.label :description, "Descrição" %><br />
+  <%= f.text_area :description %>
+</p>
+<p>
+  <%= f.label :description_en, "Descrição Inglês" %><br />
+  <%= f.text_area :description_en %>
+</p>
+
+<p>
+  <%= f.label :delivery, "Prazo de entrega" %><br />
+  <%= f.text_field :delivery %> dias úteis
+</p>
+<p>
+  <% f.fields_for :sizes do |sf| %>
+    <%= sf.label :width, "Largura:" %>
+    <%= sf.text_field :width, :size => 8 %>
+    <%= sf.label :height, "Altura:" %>
+    <%= sf.text_field :height, :size => 8 %>
+    <%= sf.label :diameter, "Diametro:" %>
+    <%= sf.text_field :diameter, :size => 8 %>
+    <%= sf.label :weight, "Peso (kg):" %>
+    <%= sf.text_field :weight, :size => 8 %>
+    <%= sf.label :value, "Valor: R$" %>
+    <%= sf.text_field :value, :size => 8 %>
+   	<%= sf.label :value, "Quantidade" %>
+    <%= sf.text_field :item_count, :size => 2 %>
+	<br/>
+  <% end %>
+</p>
+<% if @souvenir.new_record? %>
+  <p>
+    <% f.fields_for :photos do |pf| %>
+      <%= pf.label :flickr_farm, "Farm:" %>
+      <%= pf.text_field :flickr_farm, :size => 8 %>
+      <%= pf.label :flickr_server, "Server:" %>
+      <%= pf.text_field :flickr_server, :size => 8 %>
+      <%= pf.label :flickr_key, "Key:" %>
+      <%= pf.text_field :flickr_key, :size => 8 %>
+      <%= pf.label :flickr_secret, "Secret:" %>
+      <%= pf.text_field :flickr_secret, :size => 8 %>
+      <%= pf.label :level, "Level:" %>
+      <%= pf.text_field :level, :size => 8 %>
+      <br/>
+    <% end %>
+  </p>
+<% end %>

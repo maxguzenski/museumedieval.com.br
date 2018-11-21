@@ -1,0 +1,42 @@
+<div class="login-box">
+  <h5>Sou cadastrado</h5>
+  <% form_remote_tag :url => login_url(User.new) do  %>
+    <div id="login-error" class="modal-error">&nbsp;</div>
+    <p>
+      <label for="email">E-Mail:</label>
+      <input id="email" name="email" type="text" class="text"/>
+    </p>
+    <p>
+      <label for="password">Senha:</label>
+      <input id="password" name="password" type="password" class="text"/>
+    </p>
+    <div class="buttons">
+      <%= submit_tag "continuar"%>
+    </div>
+  <% end %>
+  <br/>
+  <h5>Quero me cadastrar</h5>
+  <% form_remote_tag :url => {:action => :validate_client} do  %>
+    <div id="client-error" class="modal-error">&nbsp;</div>
+    <p>
+      <label for="c_email">E-Mail:</label>
+      <input id="c_email" name="email" type="text" class="text"/>
+    </p>
+    <p>
+      <label for="c_zip_base">CEP:</label>
+      <input id="c_zip_base" name="zip_base" type="text" value="<%=session[:cep_base]%>" class="text" maxlength="5" style="width:50px"/>-
+      <input id="c_zip_digit" name="zip_digit" type="text" value="<%=session[:cep_digit]%>" class="text" maxlength="3" style="width:30px"/>
+    </p>
+    <div class="buttons">
+      <%= submit_tag "continuar"%>
+    </div>
+  <% end %>
+
+  <br/>
+  <center>
+    <a href="" onclick="$('#login-modal').dialog('close'); return false;">
+      <img src="<%= t :img %>fechar.gif" alt="fechar"/>
+    </a>
+  </center>
+
+</div>

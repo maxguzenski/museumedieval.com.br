@@ -1,0 +1,106 @@
+<% content_for :title do %>
+  | Sourvenirs | <%= @souvenir.localized_name %>
+<% end %>
+<% content_for :description do %>
+  <%= "#{h @souvenir.localized_name}: #{h @souvenir.localized_description}" %>. 
+<% end %>
+
+<% content_for :context_height do %>
+  1100px
+<% end %>
+
+<% content_for :javascript do %>
+  $('#dimensoes input:first').attr('checked','checked');
+  
+  $('a.thumb_link').click(function() {
+    return changeImage($('#main_photo'), $(this).find('img'));
+  });
+<% end %>
+
+
+<div id="inner-context">
+  <div style="margin-right:30px">
+    <div>
+      <% link_to souvenirs_path, :style => 'text-decoration:none;' do %>
+        <img src="<%= t :img %>souvenirs.gif" alt="Souvenirs" title="Souvenirs" style="float:left; margin-right:0.5em"/>
+      <% end %>
+      <div style="padding-top:10px;font-weight:bold;"> &gt;&gt; <%= @souvenir.localized_name  %> </div>
+    </div>
+      
+    <div style="text-align: center; margin: 3em 0; padding:0 50px">
+      <table style="width:640px">
+        <tr>
+          <td style="width:100%;text-align:center;padding:0">
+            <div id="main_photo" style="text-align:center; height:380px;overflow:hidden">
+              <img id="main_photo" src="<%= img_url(@souvenir.main_photo) %>" alt="<%= @souvenir.name %>" title="<%= @souvenir.name %>">
+            </div>
+          </td>
+          <% if @souvenir.photos.size > 1 %>
+            <td style="vertical-align:top">
+              <% for photo in @souvenir.photos  %>
+                <a href="#" class="thumb_link" style="text-decoration:none">
+                  <img src="<%= img_url(photo, :s)  %>" class="thumb" rel="<%= img_url(photo)  %>" alt="" style="margin-bottom:5px"/><br/>
+                </a>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+
+    <div style="margin:0 30px;">
+      <% form_for @orderItem, :url => cart_path, :html => {:id => 'encomenda_form'} do |f| %>
+        <input type="hidden" name="url_path" value="<%= souvenirs_path %>" />
+        <%= f.hidden_field :product_id %>
+        <%= f.hidden_field :size_id, :value => @souvenir.sizes.first.id %>
+        <div class="produto_desc">
+          <h3><%= @souvenir.localized_name %></h3>
+          <p>
+            <%= @souvenir.localized_description %>
+          </p>
+          <p>
+            <strong><%= t :'product_info.delivery' %>:</strong> <%= delivery_for @souvenir %><br/>
+            <strong><%= t :'product_info.dimensions' %>:</strong> <%= format_size @souvenir.sizes.first %>
+          </p>
+        </div>
+
+        <div style="margin-left:400px; text-align:center">
+          <div style="margin-bottom:3em; padding: 10px;background-color:#F6F6F6">
+			<% if I18n.locale == :'pt-BR' && @souvenir.sizes.first.item_count != 0 %>
+				<p style="text-align:left; padding-bottom:10px; margin-bottom: 10px; border-bottom:1px dotted #000000">
+	              <%= f.label :item_count, "#{t :'.quant'}:", :style=>'font-weight:bold' %>
+	              <%= f.text_field :item_count, :id => "item_count", :style => 'margin:0;padding:2px 2px; width:30px' %>
+				  <%= button_to_remote t(:'.update_price'), :url => {:action => :update_count}, :with => "'id=' + #{@souvenir.id} + '&item_count='+$('#item_count').val()" %>
+				  <br/>
+	            </p>
+				<span id="souvenir_price" class="price" style="font-size:160%"><%= currency_for @souvenir.sizes.first.value  %></span> <%= t :'buy.price_desc' %>
+            	<br/> <%= t :'buy.credit_card'%>
+            	<p style="margin-top:1.5em; margin-bottom:0; text-align:center; font-size:130%">
+              		<%= submit_tag t(:'buy.submit') %>
+            	</p>
+			<% elsif @souvenir.sizes.first.item_count == 0 %>
+				<span class="soldout" style="font-size:120%"><%= t(:'souvenirs.not_available') %></span>
+				<p style="margin-top:1em; margin-bottom:0; text-align:center; font-size:100%">
+              		<%= t :'.not_available_info' %>
+            	</p>
+			<% else %>
+				<span id="souvenir_price" class="price" style="font-size:160%"><%= currency_for @souvenir.sizes.first.localized_value  %></span> <%= t :'buy.price_desc' %><br/><br/>
+				<span style="font-size: 120%">
+					<%= t :'buy.not_online', :link => link_to(t(:by_email), contact_path(:anchor => 'form')) %>
+				</span>
+			<% end %>
+          </div>
+        <% end %>
+      </div>
+
+	  <%= render :partial => "product_comments/comments", :locals => {:product_comments => @souvenir.product_comments, :product_id => @souvenir.id, :path => souvenir_path(@souvenir)}  %>
+
+      <div style="margin-top:5em; text-align:center">
+        <% link_to souvenirs_path do %>
+          <img src="<%= t :img %>voltar.gif" alt="voltar"/>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

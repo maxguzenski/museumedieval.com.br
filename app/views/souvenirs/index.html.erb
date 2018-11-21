@@ -1,0 +1,47 @@
+<% content_for :title do %>
+  | Souvenirs
+<% end %>
+<% content_for :context_height do %>
+  1450px
+<% end %>
+
+<div id="inner-context">
+  <div style="margin-right:30px">
+    <img src="<%=t :img %>souvenirs.gif" alt="Souvenirs" />
+    <p style="font-size: 130%; margin-top:8px; margin-bottom:1em;">
+      
+    </p>
+    <p style="font-size: 110%; margin-top:8px; margin-bottom:1em;">
+      
+    </p>
+
+      <p style="text-align:center; font-size: 110%; font-family: Arial, Helvetica, sans">
+		<%= link_to t(:client_comments), comments_url(:path => souvenirs_path) %>
+	  </p>    
+	
+  </div>
+
+  
+  <ul class="list">
+    <% for s in @souvenirs %>
+      <li>
+        <% link_to souvenir_path(s) do %>
+          <div class="list-box">
+            <img src="<%= img_url(s.main_photo, :m) %> " height="150" alt="<%= s.localized_name %>" title="<%= s.localized_name %>"/>
+            <p class="title"><%= s.localized_name %></p>
+			<% if s.sizes.first.item_count == 0 %>
+				<span class="soldout"><%=t :'souvenirs.not_available' %></span><br/>
+			<% else %>
+				<span class="price"><%= min_value(s) %></span><br/>
+			<% end %>
+            <span class="small link"><%=t :'.info' %></span>
+          </div>
+        <% end %>
+      </li>
+    <% end  %>
+  </ul>
+</div>
+
+<%= will_paginate @posts %>
+
+

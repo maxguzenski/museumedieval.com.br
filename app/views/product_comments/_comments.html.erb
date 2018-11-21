@@ -1,0 +1,29 @@
+<% if params[:commet] %>
+	<% content_for :javascript do %>
+		$(function() {
+			$(function() { $('#btn_comment').click(); });
+		});
+	<% end %>
+<% end %>
+
+<div style="margin-top:6em; clear:both">
+	<a name="comments" style="text-decoration:none">&nbsp;</a>
+	<h4 style="font-weight:bold;border-bottom:1px dotted #000000"><%= t :'.title' %></h4>
+	<div style="margin:0 30px">
+		<% product_comments.each do |p| %>
+			<blockquote>
+				"<%=p.message%>"
+			</blockquote>
+			<div class="star star-<%=p.rate%>">&nbsp;</div>
+			<div style="text-align:right;margin-bottom:2em">
+				&mdash; <%= p.name %> <%= "(#{p.place})" if p.place && !p.place.empty? %>
+			</div>		
+		<% end %>
+		<p style="text-align:center">
+			<% if product_comments.empty? %>
+				<%= t :'.no_comments' %>
+			<% end %>
+			<%= link_to_remote t(:'product_comments.form.title'), :url => new_product_comment_url(:id => product_id), :html => {:id => "btn_comment"} %>
+		</p>
+	</div>
+</div>

@@ -1,0 +1,361 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Museu Medieval - Castelo Saint George</title>
+	
+	<link href="stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+	
+    <style type="text/css" media="screen">
+	body {
+		background:transparent url(images/fundo.jpg) repeat scroll 0 0;
+	}
+	
+	#faixa {
+		background:transparent url(images/faixa.gif) repeat-x scroll 0 72px;
+		min-height:500px;
+	}
+	
+	#header {
+		background:transparent url(images/titulo950.jpg) no-repeat scroll 0 0;
+		margin:0 auto;
+		min-height:132px;
+		width:950px;
+		z-index:1;
+	}
+	
+	#header .logo {
+		float: left;
+		width: 485px;
+		text-decoration: none;
+	}
+
+	#header .logo a {
+		display:block;
+		height:80px;
+		margin:20px 40px 80px;
+		text-decoration:none;
+	}
+	
+	#conteudo {
+		margin-top:-200px;
+		height:870px;
+		position:relative;
+		z-index:5000;
+	}
+	
+	#faixa_inner {
+		background:transparent url(images/castelo.jpg) no-repeat scroll 55px 0;
+		height:265px;
+		margin:-10px auto;
+		position:relative;
+		width:950px;
+		z-index:1000;
+	}
+
+	
+	.faixa_castelo {
+		background:transparent url(images/faixa_museu.gif) no-repeat scroll 560px 50px;
+		height:300px;
+	}
+	
+	.menu {
+		background:transparent url(images/menu_fundo.jpg) no-repeat scroll 0 0;
+		height:137px;
+		width:67px;		
+		float: left;		
+		text-align:center;
+		
+	}
+	
+	.menu a, .menu:HOVER a {
+		text-decoration: none;
+		color: #564e42;
+		font-weigth: bold;
+		font-size:110%;
+		font-weight:bold;
+		display: block;
+		padding-top: 85px;
+	}
+	
+	.selected a, .menu:HOVER a {
+		color: #ffffff;
+	}	
+
+	.selected {
+		background:transparent url(images/flag.gif) no-repeat scroll 0 0;
+	}
+	
+	.castelo div {
+		background:transparent url(images/menu_castelo.gif) no-repeat scroll 0px 15px;
+	}
+	
+	.castelo:HOVER div {
+		background-position: -67px 15px;
+	}
+	
+	.castelo_selected div {
+		background:transparent url(images/menu_castelo.gif) no-repeat scroll -134px 15px;
+	}
+	
+	.castelo a {
+		display: block;
+	}
+	
+	.brasoes div {
+		background:transparent url(images/menu_brasoes.gif) no-repeat scroll 0px 15px;
+	}
+	
+	.brasoes:HOVER div {
+		background-position: -67px 15px;
+	}
+	
+	.brasoes_selected div {
+		background:transparent url(images/menu_brasoes.gif) no-repeat scroll -134px 15px;
+	}
+	
+
+	.facas div {
+		background:transparent url(images/menu_facas.gif) no-repeat scroll 0px 15px;
+	}
+	
+	.facas:HOVER div {
+		background-position: -67px 15px;
+	}
+	
+	.facas_selected div {
+		background:transparent url(images/menu_facas.gif) no-repeat scroll -134px 15px;
+	}
+	
+	.facas a {
+		display: block;
+	}	
+	
+	
+	.espadas div {
+		background:transparent url(images/menu_espadas.gif) no-repeat scroll 0px 15px;
+	}
+	
+	.espadas:HOVER div {
+		background-position: -67px 15px;
+	}
+	
+	.espadas_selected div {
+		background:transparent url(images/menu_espadas.gif) no-repeat scroll -134px 15px;
+	}
+
+	.espada a {
+		display: block;
+	}	
+
+	.pena div {
+		background:transparent url(images/menu_pena.gif) no-repeat scroll 0px 15px;
+	}
+	
+	.pena:HOVER div {
+		background-position: -67px 15px;
+	}
+	
+	.pena_selected div {
+		background:transparent url(images/menu_pena.gif) no-repeat scroll -134px 15px;
+	}
+	
+	.pena a {
+		display: block;
+	}	
+	
+
+	.mapa div {
+		background:transparent url(images/menu_mapa.gif) no-repeat scroll 0px 15px;
+	}
+	
+	.mapa:HOVER div {
+		background-position: -67px 15px;
+	}
+	
+	.mapa_selected div {
+		background:transparent url(images/menu_mapa.gif) no-repeat scroll -134px 15px;
+	}
+	
+	.mapa a {
+		display: block;
+	}
+	
+	
+	.redflag {
+		background:transparent url(images/flag.gif) no-repeat scroll 0 0;
+	}
+	
+	.redflag span {
+		color:#FFFFFF;
+	}
+	
+	.topofim {
+		background:transparent url(images/topo-final950.jpg) no-repeat scroll 0 0;
+		float:left;
+		height: 124px;
+		width:60px;
+	}
+	
+	.pergaminho-topo .parte1 {
+		background:transparent url(images/perg1.gif) no-repeat scroll 56px 0;
+		height:57px;
+		margin-top:-56px;
+		position:relative;
+		z-index:4000;
+	}
+	
+	.pergaminho-topo .parte2 {
+		background:transparent url(images/perg2.jpg) no-repeat scroll 0 0;
+		height:202px;
+		position:relative;
+		z-index:4000;
+	}	
+	
+	.pergaminho {
+		background:transparent url(images/pergm.jpg) repeat-y scroll 0 0;
+	}	
+	
+	.pergaminhof {
+		background:transparent url(images/pergf.jpg) no-repeat scroll 0 0;
+		height:250px;
+	}		
+	
+	.blogs { 
+		background:transparent url(images/cavaleiro.gif) no-repeat scroll 548px 30px;
+		height: 400px;
+	}
+    </style>
+  </head>
+  
+  <body>
+	<div id="faixa">	
+		<div class="container">
+			<div id="header">
+				<div class="logo"><a href="">&nbsp;</a></div>
+				<div class="menu selected castelo_selected">
+					<div><a href="">Museu</a></div>
+				</div>						
+				<div class="menu brasoes">
+					<div><a href="">Brasões</a></div>
+				</div>	
+				<div class="menu facas">
+					<div><a href="">Cutelaria</a></div>
+				</div>
+				<div class="menu espadas">
+					<div><a href="">Serviços</a></div>
+				</div>	
+				<div class="menu pena">
+					<div><a href="">Blog</a></div>
+				</div>			
+				<div class="menu mapa">
+					<div><a href="">Contato</a></div>
+				</div>
+				<div class="topofim">
+					<div>&nbsp;</div>
+				</div>				
+			</div>
+			
+			<div id="faixa_inner">
+				<div class="prepend-10 faixa_castelo">&nbsp;</div>
+			</div>
+			
+			<div class="pergaminho-topo">
+				<div class="parte1">&nbsp;</div>
+			</div>
+			<div class="pergaminho">
+				<div class="pergaminho-topo">
+					<div class="parte2">&nbsp;</div>
+				</div>
+				<div id="conteudo" class="prepend-2 append-2">
+				
+					<div class="span-20 last">
+						<br/><br/><br/>
+						<div class="span-1"></div>
+						<div class="span-9">
+							<p style="line-height: 1.6em">
+								<!--<span style="font-size:18px; font-weight:bold;">O museu</span><br/>-->
+								<img src="images/omuseu.gif" style="margin-bottom:2px;"/><br/>
+								Venha conhecer um pouco mais da vida medieval neste castelo construído em Gramado/RS.<br/>
+								<img src="images/saibamais.jpg" style="margin-top:5px;"/>
+							</p>
+
+							<p style="line-height: 1.6em">
+								<!--<span style="font-family: arial; font-size:28px; font-weight:bold;">C<font style="font-size:18px;">utelaria</font></span><br/>-->
+								<img src="images/cutelaria.gif" style="margin-bottom:2px;"/><br/>
+								Dentro do museu você também conhece o trabalho cuteleiros brasileiros.<br/>
+								<img src="images/saibamais.jpg" style="margin-top:5px;"/>								
+							</p>
+							
+							<p style="line-height: 1.6em">
+								<!--<span style="font-size:18px; font-weight:bold;">Outros serviços</span><br/>-->
+								<img src="images/outross.gif" style="margin-bottom:2px;"/><br/>
+								Mapas heráldicos, montagem de árvore genealógica, encontros de família, brasões para instituições e mais.<br/>
+								<img src="images/saibamais.jpg" style="margin-top:5px;"/>								
+							</p>
+						</div>
+						<div class="span-1"></div>
+						<div class="span-9 last">
+							<br/>
+							<object width="330" height="275"><param name="movie" value="http://www.youtube.com/v/L5XunflPHhg&hl=pt-br&fs=1&rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/L5XunflPHhg&hl=pt-br&fs=1&rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="330" height="275"></embed></object>
+						</div>
+					</div>
+					
+					<br/>
+					
+					<div class="span-20 last">
+						<div class="span-3"></div>	
+						<div class="span-6">
+							<img src="images/ff.jpg"/>
+						</div>
+						<div class="span-8 last">
+							<p style="line-height: 1.6em">
+								<span style="font-size:18px; font-weight:bold;">Brasões de Família</span><br/>
+								<!--span style="font-family:kelmscott; font-size: 180%"><font style="font-size:150%;font-family:perrygothic;">B</font>rasoes de <font style="font-size:100%;font-family:perrygothic;">f</font>amilia</span><br/-->
+								Pesquisando e confeccionando brasões desde 1965, aqui você pode descobrir a origem e a história de sua família.<br/><br/>
+								Estamos disponibilizando na internet toda a lista de sobrenomes que já foi pesquisando ao longo desses 44 anos de trabalho.<br/><br/>
+								<input type="text" value="digite seu sobrenome" style="background-color: #c40000; color: #ffffff; border:1px solid #000000; padding: 2px;width:230px" /> pesquisar<br/>
+								<img src="images/saibamais.jpg" style="margin-top:5px;"/>
+							</p>												
+						</div>
+						<div class="span-3"></div>	
+					</div>
+					
+					<br/>
+					
+					<div class="span-20 last">
+						<div class="span-1"></div>	
+						<div class="blogs span-19 last">
+							<span style="font-size:18px; font-weight:bold;">Últimas notícias e artigos (Blog)</span><br/>
+							<p>
+								<b>Show de rua em Berna (Suiça)</b><br/>
+								Como já mencionei aqui, em 2008 eu fiz uma viajem “mochilão” por 15 países da Europa aonde retornou com várias fotos e vídeos. 
+								Um desses países foi a Suíça (falarei mais sobre ela outro dia) e um dos vídeos que fiz foi esse show de rua com gaitas de foles que esses 2 caras fizeram para arrecadar um dinheiro.  A música deles é tão boa quanto a do Soar Patrol... 
+							</p>
+							<p>
+								<b>Show de rua em Berna (Suiça)</b><br/>
+								Como já mencionei aqui, em 2008 eu fiz uma viajem “mochilão” por 15 países da Europa aonde retornou com várias fotos e vídeos. 
+								Um desses países foi a Suíça (falarei mais sobre ela outro dia) e um dos vídeos que fiz foi esse show de rua com gaitas de foles que esses 2 caras fizeram para arrecadar um dinheiro.  A música deles é tão boa quanto a do Soar Patrol... 							
+							</p>
+							<p>
+								<b>Show de rua em Berna (Suiça)</b><br/>
+								Como já mencionei aqui, em 2008 eu fiz uma viajem “mochilão” por 15 países da Europa aonde retornou com várias fotos e vídeos. 
+								Um desses países foi a Suíça (falarei mais sobre ela outro dia) e um dos vídeos que fiz foi esse show de rua com gaitas de foles que esses 2 caras fizeram para arrecadar um dinheiro.  A música deles é tão boa quanto a do Soar Patrol... 							
+							</p>
+							
+						</div>
+					</div>
+				</div>	
+				
+				<div id="perg" class="pergaminhof">&nbsp;</div>
+			</div>
+		
+			
+		</div>
+	<div>
+	
+  </body>
+  
+  
+</html>

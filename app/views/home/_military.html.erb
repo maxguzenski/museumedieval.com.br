@@ -1,0 +1,21 @@
+<% content_for :javascript do %>
+	$(function() {
+		loadFromFlicker( $('#flickr-militar'), 'militar', 10);
+	});
+<% end %>
+
+<div style="float:left; width:340px;">
+    <h5 style="margin-bottom:5px; font-size:120%">
+		<%= t :'.title' %>
+	</h5>
+	
+	<p style="text-align:justify">
+		<%= t :'.text' %>		
+	</p>
+	<p style="text-align:center; margin-top:20px">
+		<%= link_to t(:'.contact'), contact_path(:anchor => 'form') %>
+	</p>
+</div>
+<div style="margin-left:350px; text-align:left">
+	<div id="flickr-militar" class="fotos" style="text-align:center"> </div>
+</div>

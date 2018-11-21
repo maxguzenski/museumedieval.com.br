@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Museu Medieval - Castelo Saint George :: Área administrativa </title>
+    
+    <%= stylesheet_link_tag "screen", "museu-admin" %>
+    <!--[if IE]>
+       <%= stylesheet_link_tag "ie" %>
+       <%= stylesheet_link_tag "museu_ie" %>
+    <![endif]-->
+
+    <%= javascript_include_tag :defaults %>
+  </head>
+  <body>
+    <div id="header">
+      <div class="container">
+        <h1>Museu Medieval - Castelo Saint George :: Área administrativa</h1>
+      </div>
+    </div>
+    <div id="menu">
+      <div class="container">
+        <%= link_to "Pedidos", admin_orders_path %> |
+        <%= link_to "Modelos de brasão", admin_models_path %> |
+        <%= link_to "Cuteleiros", admin_cutlers_path %> |
+        <%= link_to "Sourvenirs", admin_souvenirs_path %> |
+        <%= link_to "Famílias", admin_families_path %> |
+        <%= link_to "Famílias mais pesquisadas", admin_family_searches_path %> |
+        <%= link_to "Pesquisas", admin_client_searches_path %> |
+        <%= link_to "Comentários", admin_comments_path %>
+      </div>
+    </div>
+
+    <div id="container" class="container">
+      <div>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

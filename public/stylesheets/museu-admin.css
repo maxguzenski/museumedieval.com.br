@@ -1,0 +1,32 @@
+body {
+  background-color:#EFEFEF;
+  margin:0;
+  padding:0;
+}
+
+#header {
+  background-color:#002080;
+}
+
+#header h1 {
+  font-weight:bold;
+  padding:0.5em 0;
+  font-size:220%;
+  color:#ffffff;
+  margin:0;
+}
+
+#menu {
+  background-color:#BFD0FF;
+  margin-bottom:1.5em;
+  padding:0.5em 0;
+  text-align:center;
+}
+
+#container {
+  background-color: #ffffff;
+}
+
+#container div {
+  padding: 1em;
+}

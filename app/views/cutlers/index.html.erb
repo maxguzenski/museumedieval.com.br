@@ -1,0 +1,49 @@
+<% content_for :title do %>
+  | <%= t :'cutlers.title'%>
+<% end %>
+<% content_for :description do %>
+  <%= h(t :'.p1') %>. 
+<% end %>
+<% content_for :context_height do %>
+  1450px
+<% end %>
+
+<div id="inner-context">
+  <div style="margin-right:30px">
+    <img src="<%= t :img %>cutelaria.gif" alt="Cutelaria" />
+    <p style="font-size: 130%; margin-top:8px; margin-bottom:1em;">
+		<%= t :'.p1'%>
+    </p>
+    <p style="font-size: 110%; margin-top:8px; margin-bottom:1em;">
+		<%= t :'.p2'%>
+    </p>
+
+    <p style="text-align:center">
+      <img src="images/sep.gif" width="50"/>
+    </p>
+    <p style="text-align:center; font-size: 98%; margin:0 30px 2em 30px;color:#C50000">
+      <strong style=""><%= t :'.call_cutlers.title'%></strong>
+		<%= t :'.call_cutlers.text', :link => link_to(t(:'.call_cutlers.link'), contact_path(:anchor => 'form')) %>
+	</p>
+  </div>
+
+  <ul class="list">
+    <% for cutler in @cutlers %>
+      <li>
+        <% link_to cutler_path(cutler) do %>
+          <div class="list-box">
+            <% if !cutler.main_photo.nil?  %>
+              <img src="<%= img_url(cutler.main_photo, :m) %> " height="150" alt="<%= cutler.name %>" title="<%= cutler.name %>"/>
+            <% else %>
+              <img src="/images/fotosembreve.gif" height="130" alt="fotos em breve" />
+            <% end %>
+            <p style="margin:6px 0 0 0">
+                <span class="title"><%= cutler.name %></span><br/>
+                <span class="small link"><%= t :'.info'%></span>
+            </p>
+          </div>
+        <% end %>
+      </li>
+    <% end  %>
+  </ul>
+</div>

@@ -1,0 +1,13 @@
+development: &development
+  developer: true
+  base: "http://localhost:3000"
+  return_to: "/pedido/efetuado"
+  email: max@guzenski.com.br
+
+test:
+  <<: *development
+
+production:
+  authenticity_token: 790E4E212443412CBC965D33F1AC0CDF
+  email: max@guzenski.com.br
+  return_to: "/pedido/efetuado"

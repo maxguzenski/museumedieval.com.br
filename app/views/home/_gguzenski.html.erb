@@ -1,0 +1,28 @@
+<div id="modal_gguzenski" class="modal" style="display:none">  
+  <div style="text-align:right">
+	<h3><%= t :'gilberto_guzenski'%> </h3>
+  </div>
+
+  <img src="images/gguzenski.jpg" width="100" style="float:left; margin-right:20px" />
+  <p style="font-size: 110%; margin-top:8px; margin-bottom:1em; text-align:justify">
+    <%= t :'.about1'%> 
+  </p>
+  <p style="font-size: 100%; margin-bottom:20px; text-align:justify">
+	<%= t :'.about2'%> 
+  </p>
+  <p style="font-size: 100%; margin-bottom:5px; text-align:justify; font-weight:bold">
+	<%= t :'.tecnics.title'%> 
+  </p>
+  <ul style="margin-left:130px;text-align:left">
+    <li><%= t :'.tecnics.tec1'%></li>
+    <li><%= t :'.tecnics.tec2'%></li>
+    <li><%= t :'.tecnics.tec3'%></li>
+    <li><%= t :'.tecnics.tec4'%></li>
+  </ul>
+
+  <center>
+    <a href="" onclick="$('#modal_gguzenski').dialog('close'); return false;">
+      <img src="<%=t(:img)%>fechar.gif" alt="fechar"/>
+    </a>
+  </center>
+</div>
