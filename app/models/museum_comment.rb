@@ -1,2 +1,0 @@
-class MuseumComment < Comment
-end

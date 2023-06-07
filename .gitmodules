@@ -1,3 +1,0 @@
-[submodule "vendor/plugins/brazilian-rails"]
-	path = vendor/plugins/brazilian-rails
-	url = git://github.com/maxguzenski/brazilian-rails.git
